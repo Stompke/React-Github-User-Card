@@ -5,6 +5,8 @@ import axios from 'axios';
 
 
 
+
+
 class FollowersList extends React.Component {
     
 //     constructor(){
@@ -28,6 +30,7 @@ componentDidMount(){
 render(){
         return(
             <div>
+                Followers: 
                 {this.props.followers.map(item => (
                     (
                         <div>
