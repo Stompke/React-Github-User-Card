@@ -14,7 +14,8 @@ class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      githubProfile: {}
+      githubProfile: {},
+      followersList: []
     };
   }
 
@@ -27,13 +28,35 @@ class App extends React.Component {
     .then(res => {
       console.log(res.data);
       this.setState({
-        githubProfile: res.data,
+        githubProfile: res.data
       })
+          axios
+          .get(`https://api.github.com/users/${this.state.githubProfile.login}/followers`)
+        .then(res => {
+          console.log(res)
+          this.setState({
+            followersList: res.data
+          })
+        })
+        .catch(err => {
+          console.log(err)
+        })
     })
     .catch(err => {
       console.log(err);
     })
+
+
+    // axios
+    // .get(`https://api.github.com/users/${this.state.githubProfile.login}/followers`)
+    // .then(res => {
+    //   console.log(res)
+    // })
+    // .catch(err => {
+    //   console.log(err)
+    // })
   }
+
 
   componentDidUpdate() {
     console.log('component updated!')
@@ -46,7 +69,7 @@ class App extends React.Component {
       <div className="App">
         <header className="App-header">
           {/* {this.state.isLoading ? loadingText : '' } */}
-        <GithubUser userData={this.state.githubProfile}/>
+        <GithubUser userData={this.state.githubProfile} followers={this.state.followersList}/>
 
         </header>
       </div>

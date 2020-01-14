@@ -2,12 +2,12 @@ import React from 'react';
 import FollowersList from './FollowersList';
 
 class GithubUser extends React.Component {
-    constructor(){
-    super();
-    this.state = {
-        thing: 'thingyyyy'
-    }
-    }
+    // constructor(){
+    // super();
+    // this.state = {
+    //     thing: 'thingyyyy'
+    // }
+    // }
     
 
 
@@ -19,7 +19,7 @@ class GithubUser extends React.Component {
                 <h3>Bio: {this.props.userData.bio}</h3>
                 <h2>{this.props.userData.hireable ? 'Hirable' : 'Employed'}</h2>
 
-                <FollowersList followersUrl={this.props.userData.followers_url} />
+                <FollowersList followers={this.props.followers} />
 
 
             </div>
